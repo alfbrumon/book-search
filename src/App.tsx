@@ -10,7 +10,7 @@ const AppContainer = styled.div`
   grid-template-areas:
     "header header"
     "content results";
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr 0;
   grid-template-rows: auto 1fr;
   height: 100vh;
   width: 100%;
@@ -25,6 +25,7 @@ const Header = styled.header`
   align-items: center;
   width: 100%;
   border-bottom: 1px solid var(--color-border);
+  position: relative;
 `;
 
 const Logo = styled.div`
@@ -35,14 +36,33 @@ const Logo = styled.div`
 
 const SearchArea = styled.div`
   width: 15rem;
+  position: relative;
 `;
 
 const ResultsWrapper = styled.div`
   grid-area: results;
   align-self: start;
-  margin-top: 0.5rem;
+  justify-self: end;
   margin-right: 1rem;
-  width: 15rem;
+  width: 22rem;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ResultsContainer = styled.div`
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+`;
+
+const Arrow = styled.div`
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+  margin-left: auto;
+  margin-right: 7.5rem;
+  position: relative;
+  z-index: 1;
 `;
 
 const ContentArea = styled.div`
@@ -87,11 +107,14 @@ const App = () => {
         </ContentArea>
         {isSearching && (
           <ResultsWrapper>
-            <SearchResults
-              books={books}
-              loading={loading}
-              error={error}
-            />
+            <ResultsContainer>
+              <Arrow />
+              <SearchResults
+                books={books}
+                loading={loading}
+                error={error}
+              />
+            </ResultsContainer>
           </ResultsWrapper>
         )}
       </AppContainer>

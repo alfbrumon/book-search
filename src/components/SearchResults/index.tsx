@@ -8,20 +8,20 @@ interface SearchResultsProps {
 }
 
 const ResultsContainer = styled.div`
-  margin-top: 0.5rem;
-  background-color: var(--color-card);
+  background-color: white;
   border-radius: var(--border-radius);
   border: 1px solid var(--color-border);
   overflow: hidden;
   max-height: 20rem;
   overflow-y: auto;
-  isolation: isolate; /* Creates a new stacking context without z-index */
+  isolation: isolate;
+  margin-top: -1px;
 `;
 
 const ResultItem = styled.a`
   display: flex;
-  align-items: center;
-  padding: 0.75rem 0.5rem;
+  align-items: flex-start;
+  padding: 0.75rem;
   border-bottom: 1px solid var(--color-border);
   text-decoration: none;
   color: inherit;
@@ -38,16 +38,10 @@ const ResultItem = styled.a`
 `;
 
 const BookThumbnail = styled.div`
-  width: 2.5rem;
-  height: 3rem;
+  width: 3rem;
+  height: 3.6rem;
   background-color: var(--color-header-bg);
   margin-right: 0.75rem;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 2px;
-  overflow: hidden;
 `;
 
 const BookCoverImage = styled.img`
