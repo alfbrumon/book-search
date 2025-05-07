@@ -1,1 +1,12 @@
-import axios from 'axios'; import { BookSearchResponse, SearchParams } from '../types'; const API_URL = 'https://openlibrary.org/search.json'; export const searchBooks = async (params: SearchParams): Promise<BookSearchResponse> => { try { const response = await axios.get<BookSearchResponse>(API_URL, { params: { q: params.q, page: params.page || 1, limit: params.limit || 10, sort: params.sort || undefined }, }); return response.data; } catch (error) { console.error('Error searching books:', error); throw error; } };
+import axios from 'axios';
+import type { BookSearchResponse, SearchParams } from '../types';
+
+const API_URL = 'https://openlibrary.org/search.json';
+const MAX_RESULTS = 5; // for now, we'll limit the results
+export const searchBooks = async (params: SearchParams): Promise<BookSearchResponse> => {
+    const response = await axios.get<BookSearchResponse>(API_URL, {
+        params: { q: params.q, limit: MAX_RESULTS }
+    });
+
+    return response.data;
+};
